@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Across Every Time Zone... ❤️</title>
+
+    <style>
+
+        :root {
+
+            --bg-gradient: linear-gradient(135deg, #ffe5ec 0%, #ffc2d1 100%);
+
+            --primary-color: #fb6f92;
+
+            --primary-hover: #ff8fab;
+
+            --text-color: #4a4a4a;
+
+            --card-bg: rgba(255, 255, 255, 0.9);
+
+        }
+
+        * {
+
+            box-sizing: border-box;
+
+            margin: 0;
+
+            padding: 0;
+
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+        }
+
+        body {
+
+            background: var(--bg-gradient);
+
+            min-height: 100vh;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            color: var(--text-color);
+
+            overflow: hidden;
+
+            padding: 20px;
+
+        }
+
+        .container {
+
+            background: var(--card-bg);
+
+            padding: 40px 30px;
+
+            border-radius: 20px;
+
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+
+            width: 100%;
+
+            max-width: 460px;
+
+            text-align: center;
+
+            backdrop-filter: blur(10px);
+
+            border: 1px solid rgba(255, 255, 255, 0.5);
+
+            position: relative;
+
+            min-height: 400px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            align-items: center;
+
+        }
+
+        .screen {
+
+            display: none;
+
+            width: 100%;
+
+            animation: fadeIn 0.5s ease-in-out forwards;
+
+        }
+
+        .screen.active {
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+        @keyframes fadeIn {
+
+            from { opacity: 0; transform: translateY(10px); }
+
+            to { opacity: 1; transform: translateY(0); }
+
+        }
+
+        .heart-icon {
+
+            color: var(--primary-color);
+
+            font-size: 35px;
+
+            margin-bottom: 15px;
+
+            animation: pulse 1.5s infinite;
+
+        }
+
+        @keyframes pulse {
+
+            0% { transform: scale(1); }
+
+            50% { transform: scale(1.1); }
+
+            100% { transform: scale(1); }
+
+        }
+
+        h2 {
+
+            font-size: 22px;
+
+            margin-bottom: 12px;
+
+            font-weight: 600;
+
+            line-height: 1.4;
+
+        }
+
+        p.subtitle {
+
+            font-size: 13px;
+
+            line-height: 1.5;
+
+            margin-bottom: 25px;
+
+            color: #666;
+
+        }
+
+        .btn-container {
+
+            display: flex;
+
+            gap: 20px;
+
+            justify-content: center;
+
+            width: 100%;
+
+            margin-top: 15px;
+
+            position: relative;
+
+        }
+
+        button {
+
+            padding: 12px 35px;
+
+            border: none;
+
+            border-radius: 25px;
+
+            font-size: 16px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: all 0.3s ease;
+
+            outline: none;
+
+        }
+
+        .btn-yes, .btn-next {
+
+            background-color: var(--primary-color);
+
+            color: white;
+
+            box-shadow: 0 4px 15px rgba(251, 111, 146, 0.3);
+
+        }
+
+        .btn-yes:hover, .btn-next:hover {
+
+            background-color: var(--primary-hover);
+
+            transform: translateY(-2px);
+
+        }
+
+        .btn-no {
+
+            background-color: #f0f0f0;
+
+            color: #777;
+
+            position: relative;
+
+        }
+
+        input[type="date"] {
+
+            padding: 12px;
+
+            border: 2px solid #ffe5ec;
+
+            border-radius: 10px;
+
+            font-size: 16px;
+
+            color: var(--text-color);
+
+            outline: none;
+
+            width: 85%;
+
+            margin-bottom: 25px;
+
+            text-align: center;
+
+        }
+
+        .options-list {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 12px;
+
+            width: 100%;
+
+            margin-bottom: 25px;
+
+        }
+
+        .option-card {
+
+            background: white;
+
+            padding: 15px;
+
+            border-radius: 12px;
+
+            border: 2px solid transparent;
+
+            cursor: pointer;
+
+            transition: all 0.2s ease;
+
+            font-weight: 500;
+
+            text-align: left;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+
+        }
+
+        .option-card:hover {
+
+            border-color: var(--primary-hover);
+
+        }
+
+        .option-card.selected {
+
+            border-color: var(--primary-color);
+
+            background-color: #fff0f3;
+
+        }
+
+        .option-emoji {
+
+            font-size: 24px;
+
+        }
+
+        .summary-box {
+
+            background: white;
+
+            padding: 20px;
+
+            border-radius: 15px;
+
+            width: 100%;
+
+            margin-bottom: 20px;
+
+            text-align: left;
+
+            border-left: 4px solid var(--primary-color);
+
+        }
+
+        .summary-line {
+
+            margin-bottom: 10px;
+
+            font-size: 15px;
+
+        }
+
+        .summary-line strong {
+
+            color: var(--primary-color);
+
+        }
+
+        .letter-text {
+
+            font-size: 14px;
+
+            line-height: 1.6;
+
+            color: #555;
+
+            text-align: justify;
+
+            margin-top: 10px;
+
+            background: rgba(255, 255, 255, 0.6);
+
+            padding: 15px;
+
+            border-radius: 10px;
+
+            border: 1px dashed var(--primary-hover);
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        
+
+        <!-- SCREEN 1: ACKNOWLEDGING THE DISTANCE & APOLOGY -->
+
+        <div class="screen active" id="screen1">
+
+            <div class="heart-icon">🌍❤️✈️</div>
+
+            <h2>I know the distance and the time difference have been heavy lately...</h2>
+
+            <p class="subtitle">I hate it when a delayed reply makes you upset or sad. I never want to lose you, and I love you way too much to let anything come between us. Can we plan a special moment just for us?</p>
+
+            <div class="btn-container">
+
+                <button class="btn-yes" onclick="nextScreen(2)">Yes, please ❤️</button>
+
+                <button class="btn-no" id="noBtn" onmouseover="moveNoButton()" onclick="moveNoButton()">No, I'm still mad 🥺</button>
+
+            </div>
+
+        </div>
+
+        <!-- SCREEN 2: PICK A DAY -->
+
+        <div class="screen" id="screen2">
+
+            <div class="heart-icon">📅</div>
+
+            <h2>When can I have your undivided attention?</h2>
+
+            <p class="subtitle">Pick a day where we can perfectly sync our schedules.</p>
+
+            <input type="date" id="datePicker">
+
+            <button class="btn-next" onclick="saveDate()">Next Step ✨</button>
+
+        </div>
+
+        <!-- SCREEN 3: VIRTUAL DATE TYPE -->
+
+        <div class="screen" id="screen3">
+
+            <div class="heart-icon">💻✨</div>
+
+            <h2>What kind of date are we having?</h2>
+
+            <p class="subtitle">Distance can't stop us from creating memories.</p>
+
+            <div class="options-list">
+
+                <div class="option-card" onclick="selectType(this, 'FaceTime / Video Call Dinner')">
+
+                    <span class="option-emoji">🕯️</span>
+
+                    <div><strong>Video Call Dinner</strong><br><small>We both order our favorite food and eat together.</small></div>
+
+                </div>
+
+                <div class="option-card" onclick="selectType(this, 'Virtual Movie Night')">
+
+                    <span class="option-emoji">🎬</span>
+
+                    <div><strong>Virtual Movie Night</strong><br><small>Streaming a romantic movie together while on call.</small></div>
+
+                </div>
+
+                <div class="option-card" onclick="selectType(this, 'Deep Talk & Coffee Date')">
+
+                    <span class="option-emoji">☕</span>
+
+                    <div><strong>Deep Talk & Coffee</strong><br><small>No distractions, just catching up on everything.</small></div>
+
+                </div>
+
+            </div>
+
+            <button class="btn-next" onclick="saveType()">Next Step ✨</button>
+
+        </div>
+
+        <!-- SCREEN 4: THE PROMISE -->
+
+        <div class="screen" id="screen4">
+
+            <div class="heart-icon">🤝❤️</div>
+
+            <h2>My LDR Promise to You</h2>
+
+            <p class="subtitle">Before we lock it in, I need you to choose a promise from me to make you feel closer.</p>
+
+            <div class="options-list">
+
+                <div class="option-card" onclick="selectPromise(this, 'Always sending a good morning/night text, no matter how busy.')">
+
+                    <span class="option-emoji">📱</span>
+
+                    <div><strong>The Update Promise</strong><br><small>I will always text you before I sleep/wake up so you feel safe.</small></div>
+
+                </div>
+
+                <div class="option-card" onclick="selectPromise(this, 'Setting up a fixed, unmissable weekly call time.')">
+
+                    <span class="option-emoji">⏰</span>
+
+                    <div><strong>The Priority Promise</strong><br><small>No matter the workload, our call time is locked and sacred.</small></div>
+
+                </div>
+
+                <div class="option-card" onclick="selectPromise(this, 'Sending unexpected voice notes so you can always hear my voice.')">
+
+                    <span class="option-emoji">🎙️</span>
+
+                    <div><strong>The Voice Promise</strong><br><small>More voice notes so you can feel my real tone and love.</small></div>
+
+                </div>
+
+            </div>
+
+            <button class="btn-next" onclick="savePromise()">Lock it in! 🚀</button>
+
+        </div>
+
+        <!-- SCREEN 5: FINAL CELEBRATION & LOVE NOTE -->
+
+        <div class="screen" id="screen5">
+
+            <div class="heart-icon">♾️❤️🔐</div>
+
+            <h2>It's Locked In!</h2>
+
+            <p class="subtitle">Miles mean nothing when someone means everything.</p>
+
+            
+
+            <div class="summary-box">
+
+                <div class="summary-line">📅 <strong>Our Date:</strong> <span id="finalDate"></span></div>
+
+                <div class="summary-line">✨ <strong>Activity:</strong> <span id="finalType"></span></div>
+
+                <div class="summary-line">🤝 <strong>My Promise:</strong> <span id="finalPromise"></span></div>
+
+            </div>
+
+            <div class="letter-text">
+
+                "Different countries and mismatched hours are temporary, but my love for you is permanent. Thank you for staying patient with me through the delayed replies. I am completely yours, and I am counting down the moments until the distance is zero."
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        let dateSelections = {
+
+            date: '',
+
+            type: '',
+
+            promise: ''
+
+        };
+
+        function nextScreen(screenNum) {
+
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+
+            document.getElementById('screen' + screenNum).classList.add('active');
+
+        }
+
+        // Playful runaway button if she tries to stay mad
+
+        function moveNoButton() {
+
+            const noBtn = document.getElementById('noBtn');
+
+            const container = document.querySelector('.container');
+
+            
+
+            const maxX = container.clientWidth - noBtn.clientWidth - 20;
+
+            const maxY = container.clientHeight - noBtn.clientHeight - 20;
+
+            
+
+            const randomX = Math.floor(Math.random() * maxX);
+
+            const randomY = Math.floor(Math.random() * maxY);
+
+            
+
+            noBtn.style.position = 'absolute';
+
+            noBtn.style.left = randomX + 'px';
+
+            noBtn.style.top = randomY + 'px';
+
+        }
+
+        function saveDate() {
+
+            const dateVal = document.getElementById('datePicker').value;
+
+            if(!dateVal) {
+
+                alert('Please pick a date for our virtual meet! 🥰');
+
+                return;
+
+            }
+
+            const options = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
+
+            dateSelections.date = new Date(dateVal).toLocaleDateString('en-US', options);
+
+            nextScreen(3);
+
+        }
+
+        function selectType(element, typeVal) {
+
+            document.querySelectorAll('#screen3 .option-card').forEach(c => c.classList.remove('selected'));
+
+            element.classList.add('selected');
+
+            dateSelections.type = typeVal;
+
+        }
+
+        function saveType() {
+
+            if(!dateSelections.type) {
+
+                alert('Please pick what we are doing! 💻');
+
+                return;
+
+            }
+
+            nextScreen(4);
+
+        }
+
+        function selectPromise(element, promiseVal) {
+
+            document.querySelectorAll('#screen4 .option-card').forEach(c => c.classList.remove('selected'));
+
+            element.classList.add('selected');
+
+            dateSelections.promise = promiseVal;
+
+        }
+
+        function savePromise() {
+
+            if(!dateSelections.promise) {
+
+                alert('Please select a promise you want me to keep! 🔐');
+
+                return;
+
+            }
+
+            
+
+            document.getElementById('finalDate').innerText = dateSelections.date;
+
+            document.getElementById('finalType').innerText = dateSelections.type;
+
+            document.getElementById('finalPromise').innerText = dateSelections.promise;
+
+            
+
+            nextScreen(5);
+
+        }
+
+        const today = new Date().toISOString().split('T')[0];
+
+        document.getElementById('datePicker').setAttribute('min', today);
+
+    </script>
+
+</body>
+
+</html>
+
